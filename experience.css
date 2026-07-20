@@ -1,0 +1,8 @@
+.experience { border-top: 1px solid var(--line); }
+.timeline { border-top: 1px solid var(--line); }
+.role { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
+.role time { font-family: Georgia, serif; font-style: italic; color: var(--accent); }
+.role h3 { margin: 0; font-size: 1.2rem; }
+.role p { margin: .15rem 0; color: var(--accent2); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 800; }
+.role span { color: var(--muted); font-size: .92rem; }
+@media (max-width: 760px) { .role { grid-template-columns: 1fr; gap: .4rem; } }
