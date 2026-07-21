@@ -29,6 +29,7 @@ All asset paths are relative, so the site also works during local preview.
 - Publish only claims and metrics that can be defended in an interview.
 - Keep company screenshots, credentials, internal URLs, ticket IDs, customer data, private API routes, database schemas, production data, and unreleased requirements out of this repository.
 - Treat the QA artifacts as anonymized portfolio samples, not real release records.
+- Keep the original Kredivo plans and screenshots private. The Sales & Merchant Operations page is a sanitized derivative of eight authored or co-authored plans.
 - Disclose AI assistance accurately. Do not claim AI/ML model validation or production AI ownership without evidence.
 
 ## Structure
@@ -36,5 +37,5 @@ All asset paths are relative, so the site also works during local preview.
 - `index.html`: portfolio landing page
 - `styles.css` and supporting CSS files: visual system and responsive layout
 - `script.js`: theme, mobile navigation, filters, and dynamic year
-- `artifacts/`: anonymized QA document samples
+- `artifacts/`: anonymized QA document samples, including sanitized test-planning evidence
 - `favicon.svg`, `site.webmanifest`, `robots.txt`, and `sitemap.xml`: browser and search metadata

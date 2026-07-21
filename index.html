@@ -79,9 +79,9 @@
         <button class="filter" data-filter="fintech" aria-pressed="false">Fintech</button>
         <button class="filter" data-filter="integration" aria-pressed="false">Integration</button>
         <button class="filter" data-filter="risk" aria-pressed="false">Risk rules</button>
-        <button class="filter" data-filter="social" aria-pressed="false">Social product</button>
+        <button class="filter" data-filter="social" aria-pressed="false">Social platforms</button>
       </div>
-      <p class="sr-only" id="filter-status" aria-live="polite">Showing 5 case studies</p>
+      <p class="sr-only" id="filter-status" aria-live="polite">Showing 6 case studies</p>
 
       <div class="projects">
         <article class="project featured" data-tags="fintech integration">
@@ -144,11 +144,29 @@
             <div><h4>Safety</h4><p>Validated both enforcement and false-positive protection: matching risk combinations were restricted while legitimate users remained unaffected.</p></div>
           </div></details>
         </article>
-        <article class="project" data-tags="social integration">
+
+        <article class="project" data-tags="fintech integration">
           <div class="project-number">05</div>
           <div class="project-main">
-            <p class="project-type">Social product · Web &amp; Mobile · UAT</p>
-            <h3>Multi-Platform Social Product</h3>
+            <p class="project-type">Fintech · Internal tools · API &amp; Workflow</p>
+            <h3>Sales &amp; Merchant Operations (Internal Tools)</h3>
+            <p>Test planning for internal sales and merchant workflows, including approval journeys, schedule and attendance changes, data-mapping migrations, partner-tool integrations, bulk uploads, and referral-code processing.</p>
+            <div class="tags"><span>Test planning</span><span>Manual QA</span><span>API</span><span>Decision tables</span></div>
+          </div>
+          <details><summary>Read case study <span>↗</span></summary><div class="case-grid">
+            <div><h4>Business coverage</h4><p>Covered role-based approvals, request processing, employee schedule and attendance flows, sales transaction support, merchant whitelisting, partner referral codes, product-information capture, and a learning-platform integration.</p></div>
+            <div><h4>My contribution</h4><p>Authored and co-authored test plans, converted business requirements into explicit scope and scenarios, identified dependencies and exclusions, and defined expected outcomes for UI, API, and integration behaviour.</p></div>
+            <div><h4>Test design</h4><p>Used positive and negative scenarios, decision tables, pairwise combinations, role-permission checks, required-field validation, duplicate prevention, status-transition coverage, and end-to-end checks.</p></div>
+            <div><h4>Risk focus</h4><p>Prioritized incorrect access, broken approval sequencing, invalid bulk data, duplicate records, inconsistent mapping, and failures between the user interface and dependent services.</p></div>
+            <div><h4>Portfolio evidence</h4><p>The public sample preserves the planning method while removing internal names, ticket identifiers, links, endpoints, production data, and proprietary business rules. <a href="artifacts/kredivo-test-planning.html">Open the sanitized test-planning evidence →</a></p></div>
+          </div></details>
+        </article>
+
+        <article class="project" data-tags="social integration">
+          <div class="project-number">06</div>
+          <div class="project-main">
+            <p class="project-type">Social Networking Platforms · Web &amp; Mobile · UAT</p>
+            <h3>Social Networking Platforms</h3>
             <p>QA ownership for an early-stage social platform across web, Android, iOS, API, and CMS dashboard workflows, from requirement review and test design through defect triage, sprint reporting, and UAT readiness.</p>
             <div class="tags"><span>Manual QA</span><span>API</span><span>UAT</span><span>Release reporting</span></div>
           </div>
@@ -174,13 +192,22 @@
     <section class="section artifacts" id="artifacts">
       <div class="section-head">
         <div><p class="kicker">QA artifacts</p><h2>Evidence, safely presented</h2></div>
-        <p>Full, anonymized working samples based on the way I structure test cases, bug reports, UAT planning, and sprint reporting. Open each document to review the detail.</p>
+        <p>Full, anonymized working samples based on the way I structure test plans, test cases, bug reports, UAT planning, and sprint reporting. Open each document to review the detail.</p>
       </div>
       <div class="artifact-grid">
         <article class="artifact-card">
+          <div class="doc-bar"><span></span><span></span><span></span><b>TEST-PLAN.html</b></div>
+          <div class="doc-body">
+            <p class="doc-label">Sanitized Professional Evidence</p><h3>Sales &amp; Merchant Operations (Internal Tools)</h3>
+            <div class="doc-meta"><span>Role <b>QA Engineer</b></span><span>Coverage <b>UI · API · Integration</b></span><span>Method <b>Risk based</b></span></div>
+            <h4>Evidence base</h4><p>Eight authored or co-authored test plans covering internal sales operations and merchant workflows.</p>
+            <h4>Techniques</h4><p>Scope analysis, decision tables, pairwise combinations, permissions, negative cases, data validation, and dependency mapping.</p>
+          </div><footer class="doc-footer"><a href="artifacts/kredivo-test-planning.html">Open sanitized test-planning evidence →</a></footer>
+        </article>
+        <article class="artifact-card">
           <div class="doc-bar"><span></span><span></span><span></span><b>UAT-PLAN.pdf</b></div>
           <div class="doc-body">
-            <p class="doc-label">UAT Plan &amp; Readiness Report</p><h3>Multi-Platform Product Release</h3>
+            <p class="doc-label">UAT Plan &amp; Readiness Report</p><h3>Social Networking Platforms</h3>
             <div class="doc-meta"><span>Owner <b>Senior QA Engineer</b></span><span>Status <b>Final</b></span><span>Assessment <b class="go">Requires follow-up</b></span></div>
             <h4>Objective</h4><p>Validate critical business journeys and communicate residual release risk.</p>
             <h4>Exit criteria</h4><ul><li>Critical scenarios executed</li><li>No unresolved blocker defects</li><li>High risks accepted or resolved</li><li>Business sign-off recorded</li></ul>
@@ -246,8 +273,8 @@
       <div class="timeline">
         <div class="role"><time>Dec 2025 – Present</time><div><h3>Senior QA Engineer · HONO · Freelance</h3><p>Singapore · Remote</p><span>Multi-platform product QA, UAT planning, API validation, defect management, quality dashboards, and release reporting.</span></div></div>
         <div class="role"><time>Dec 2022 – Feb 2026</time><div><h3>QA Engineer · Kredivo Group</h3><p>Fintech</p><span>Payment flows, risk-rule validation, API and integration testing, mobile and web regression, data checks, and release-quality coordination.</span></div></div>
-        <div class="role"><time>Apr 2021 – Dec 2022</time><div><h3>Senior QA Engineer · The Body Shop</h3><p>Retail &amp; e-commerce</p><span>End-to-end product testing, test design, regression coverage, defect tracking, and cross-functional release support.</span></div></div>
-        <div class="role"><time>Jun 2020 – Apr 2021</time><div><h3>QA Engineer · PT Archor Teknologi</h3><p>Technology services</p><span>Functional testing, API validation, test documentation, issue investigation, and delivery collaboration.</span></div></div>
+        <div class="role"><time>Apr 2021 – Feb 2022</time><div><h3>Senior QA Engineer / Acting QA Lead · The Body Shop</h3><p>Retail &amp; e-commerce</p><span>End-to-end product testing, test design, regression coverage, defect tracking, and cross-functional release support.</span></div></div>
+        <div class="role"><time>Jun 2020 – Apr 2021</time><div><h3>QA Engineer · PT Achor Teknologi</h3><p>Technology services</p><span>Functional testing, API validation, test documentation, issue investigation, and delivery collaboration.</span></div></div>
         <div class="role"><time>Jul 2019 – May 2020</time><div><h3>QA Engineer · Fore Coffee</h3><p>F&amp;B technology</p><span>Mobile and web testing for customer and operational journeys, regression execution, and defect management.</span></div></div>
         <div class="role"><time>May 2018 – Apr 2019</time><div><h3>UAT Tester · Bukalapak</h3><p>E-commerce</p><span>Business-flow validation, UAT execution, evidence collection, and issue reporting.</span></div></div>
       </div>
@@ -283,7 +310,7 @@
       <div class="about-copy">
         <p>I am Ratika Purnama Sari Subarza, a QA Engineer with 5+ years of QA Engineering experience, plus earlier experience in UAT, testing web, Android, iOS, API, CMS, and data-dependent product flows.</p>
         <p>My strongest work sits where business rules and technical systems meet: financial transactions, external integrations, conditional eligibility, UAT coordination, and release risk. I use automation selectively to improve feedback, while keeping my core strength in deliberate manual investigation.</p>
-        <div class="toolbox"><span>Jira</span><span>Confluence</span><span>Jira Xray</span><span>Postman</span><span>Swagger</span><span>MySQL</span><span>DevTools</span><span>Grafana</span><span>Firebase</span><span>Katalon</span><span>Cypress</span><span>Playwright</span><span>Appium</span><span>Selenium</span><span>WebdriverIO</span><span>Pytest</span><span>Python</span><span>GPT</span><span>Codex</span><span>Claude</span></div>
+        <div class="toolbox"><span>Jira</span><span>Confluence</span><span>Jira Xray</span><span>Postman</span><span>Bruno</span><span>MySQL</span><span>DevTools</span><span>Scalyr</span><span>Grafana</span><span>Firebase</span><span>Cypress</span><span>Playwright</span><span>Appium</span><span>Selenium</span><span>WebdriverIO</span><span>Pytest</span><span>Python</span><span>GPT</span><span>Codex</span><span>Claude</span></div>
       </div>
     </section>
 

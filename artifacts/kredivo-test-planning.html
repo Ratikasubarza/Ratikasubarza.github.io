@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sanitized test-planning evidence for sales and merchant operations internal tools by Ratika Subarza.">
+  <title>Sales &amp; Merchant Operations (Internal Tools) | Ratika Subarza</title>
+  <link rel="stylesheet" href="artifact-doc.css">
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a href="../index.html#artifacts">← Back to portfolio</a>
+      <h1>Sales &amp; Merchant Operations (Internal Tools)</h1>
+      <p>Internal sales and merchant operations · Sanitized professional sample</p>
+    </header>
+    <main>
+      <div class="notice">This page is based on eight test plans I authored or co-authored while working at Kredivo. Internal ticket IDs, employee names, company links, environments, API routes, production data, and proprietary business rules have been removed or generalized.</div>
+
+      <div class="meta">
+        <div><span>Role</span><b>QA Engineer</b></div>
+        <div><span>Surfaces</span><b>Web · Mobile · API</b></div>
+        <div><span>Test level</span><b>Functional · Integration · E2E</b></div>
+        <div><span>Primary execution</span><b>Manual testing</b></div>
+      </div>
+
+      <h2>Evidence base</h2>
+      <p>The source plans covered multiple changes across internal sales operations and partner-support tools. The portfolio groups them by test risk instead of exposing internal project identifiers.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Area</th><th>Representative scope</th><th>Primary risks</th></tr></thead>
+          <tbody>
+            <tr><td>Approval workflows</td><td>Schedule requests, approval or rejection, resignation information, and downstream processing</td><td>Incorrect role access, skipped approval stages, and inconsistent request status</td></tr>
+            <tr><td>Schedule and attendance</td><td>Identifier-mapping changes across schedule, attendance, and supporting modules</td><td>Wrong entity mapping, partial migration, and regression across dependent workflows</td></tr>
+            <tr><td>Sales operations</td><td>Acquisition, transaction-claim support, and product-information capture through UI and API flows</td><td>Data mismatch, missing information, and inconsistent UI/API behaviour</td></tr>
+            <tr><td>Partner integrations</td><td>Learning-platform access from an internal application</td><td>Broken handoff, unavailable content, and incomplete end-to-end navigation</td></tr>
+            <tr><td>Merchant administration</td><td>Bulk whitelist uploads, role permissions, list and search behaviour, status handling, and duplicate prevention</td><td>Unauthorized access, invalid files, required-field gaps, and duplicate records</td></tr>
+            <tr><td>Referral-code processing</td><td>Create and update behaviour across user scenarios and API-dependent flows</td><td>Invalid combinations, incorrect updates, duplicate values, and service-response failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>How I structured the test plans</h2>
+      <div class="evidence">
+        <div><b>1. Business context</b><br>State the user or operational problem and the change being introduced.</div>
+        <div><b>2. Scope boundaries</b><br>Separate the modules and behaviours to validate from explicit exclusions.</div>
+        <div><b>3. Dependencies</b><br>Identify connected applications, services, roles, squads, and test environments.</div>
+        <div><b>4. Scenario design</b><br>Cover positive, negative, permission, validation, status, error, and regression paths.</div>
+        <div><b>5. Expected outcomes</b><br>Define observable results across the user interface, API response, and resulting data state.</div>
+        <div><b>6. Execution ownership</b><br>Document the QA owner, test type, review feedback, and readiness for execution.</div>
+      </div>
+
+      <h2>Sanitized decision-table example</h2>
+      <p>This synthetic example demonstrates the decision-table method used in the source plans without reproducing company rules or data.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Role authorized</th><th>Input valid</th><th>Existing record</th><th>Expected outcome</th><th>Coverage type</th></tr></thead>
+          <tbody>
+            <tr><td>Yes</td><td>Yes</td><td>No</td><td>Accept the request and create one record</td><td><span class="status pass">Positive</span></td></tr>
+            <tr><td>Yes</td><td>No</td><td>No</td><td>Reject the request with clear validation feedback</td><td><span class="priority medium">Negative</span></td></tr>
+            <tr><td>No</td><td>Yes</td><td>No</td><td>Restrict the action and preserve the current state</td><td><span class="priority high">Permission</span></td></tr>
+            <tr><td>Yes</td><td>Yes</td><td>Yes</td><td>Prevent duplication or follow the permitted update path</td><td><span class="priority high">Data integrity</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Integration checks represented in the plans</h2>
+      <ul>
+        <li>Verify that the UI sends the intended action and displays the correct resulting state.</li>
+        <li>Validate successful and failed service responses, including recoverable error handling.</li>
+        <li>Check that identifiers and mapped data remain consistent across dependent modules.</li>
+        <li>Confirm that role permissions apply to both visibility and executable actions.</li>
+        <li>Protect data integrity through required-field, duplicate, and status-transition coverage.</li>
+        <li>Run targeted regression across workflows affected by shared data or integration changes.</li>
+      </ul>
+
+      <h2>What this evidence demonstrates</h2>
+      <div class="decision"><b>Practical test-planning ownership</b><br>I can translate operational requirements into structured test scope, risk-based scenarios, expected results, dependency checks, and execution-ready documentation across UI, API, and integration layers.</div>
+    </main>
+    <div class="footer">Sanitized QA portfolio evidence · No internal company material is reproduced</div>
+  </div>
+</body>
+</html>
