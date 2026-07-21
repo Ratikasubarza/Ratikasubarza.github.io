@@ -15,7 +15,7 @@
       <p>Internal sales and merchant operations · Sanitized professional sample</p>
     </header>
     <main>
-      <div class="notice">This page is based on eight test plans I authored or co-authored while working at Kredivo. Internal ticket IDs, employee names, company links, environments, API routes, production data, and proprietary business rules have been removed or generalized.</div>
+      <div class="notice">This page is based on eight test plans I authored or co-authored while working at Kredivo. The tables below retain selected test conditions and field-level coverage from the source documents. Internal ticket IDs, employee names, company links, environments, API routes, database queries, production data, and sensitive rule details have been removed or generalized.</div>
 
       <div class="meta">
         <div><span>Role</span><b>QA Engineer</b></div>
@@ -50,19 +50,109 @@
         <div><b>6. Execution ownership</b><br>Document the QA owner, test type, review feedback, and readiness for execution.</div>
       </div>
 
-      <h2>Sanitized decision-table example</h2>
-      <p>This synthetic example demonstrates the decision-table method used in the source plans without reproducing company rules or data.</p>
+      <h2>Decision table excerpt: role-based access</h2>
+      <p>This excerpt retains the user roles and permission outcomes documented in the merchant bulk-whitelist test plan. It demonstrates case-by-case validation instead of treating all authorized users as one generic role.</p>
       <div class="scroll">
         <table>
-          <thead><tr><th>Role authorized</th><th>Input valid</th><th>Existing record</th><th>Expected outcome</th><th>Coverage type</th></tr></thead>
+          <thead><tr><th>User role</th><th>View merchant menu</th><th>Perform bulk upload</th><th>View whitelist</th><th>View registered list</th></tr></thead>
           <tbody>
-            <tr><td>Yes</td><td>Yes</td><td>No</td><td>Accept the request and create one record</td><td><span class="status pass">Positive</span></td></tr>
-            <tr><td>Yes</td><td>No</td><td>No</td><td>Reject the request with clear validation feedback</td><td><span class="priority medium">Negative</span></td></tr>
-            <tr><td>No</td><td>Yes</td><td>No</td><td>Restrict the action and preserve the current state</td><td><span class="priority high">Permission</span></td></tr>
-            <tr><td>Yes</td><td>Yes</td><td>Yes</td><td>Prevent duplication or follow the permitted update path</td><td><span class="priority high">Data integrity</span></td></tr>
+            <tr><td>Administrator</td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td></tr>
+            <tr><td>BD Admin</td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td></tr>
+            <tr><td>Merchant</td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td></tr>
+            <tr><td>ASM</td><td><span class="status pass">Yes</span></td><td><span class="priority medium">No</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td></tr>
+            <tr><td>TSM</td><td><span class="status pass">Yes</span></td><td><span class="priority medium">No</span></td><td><span class="status pass">Yes</span></td><td><span class="status pass">Yes</span></td></tr>
           </tbody>
         </table>
       </div>
+
+      <h3>Role-by-role scenario design</h3>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Role</th><th>Scenario validated</th><th>Expected result</th><th>Risk focus</th></tr></thead>
+          <tbody>
+            <tr><td>Administrator</td><td>Open the merchant menu, review whitelist and registered records, download the template, and submit a valid bulk-upload file</td><td>All permitted functions are available and the valid file is accepted</td><td>Full-access regression</td></tr>
+            <tr><td>BD Admin</td><td>Access both record lists and complete a valid bulk upload using all required fields</td><td>Lists are visible and the upload is accepted for processing</td><td>Business-operation continuity</td></tr>
+            <tr><td>Merchant</td><td>Access the merchant area, review records, and submit a complete template</td><td>Authorized features are available and valid data can be uploaded</td><td>Merchant workflow access</td></tr>
+            <tr><td>ASM</td><td>Access the merchant menu and both record lists, then attempt to use bulk upload</td><td>Lists remain visible, while bulk-upload capability is unavailable</td><td>Privilege restriction</td></tr>
+            <tr><td>TSM</td><td>Access the merchant menu and both record lists, then attempt to use bulk upload</td><td>Lists remain visible, while bulk-upload capability is unavailable</td><td>Privilege restriction</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Decision table excerpt: bulk-upload validation</h2>
+      <p>The field names below are retained from the source test plan because they describe ordinary import data rather than credentials or proprietary logic.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Template column</th><th>Required</th><th>Validation scenario</th><th>Expected result</th></tr></thead>
+          <tbody>
+            <tr><td>Outlet ID</td><td><span class="status pass">Yes</span></td><td>Submit a row without Outlet ID</td><td>Row or file is rejected with field-level validation</td></tr>
+            <tr><td>Name</td><td><span class="status pass">Yes</span></td><td>Submit a row without Name</td><td>Row or file is rejected with field-level validation</td></tr>
+            <tr><td>Phone Number</td><td><span class="status pass">Yes</span></td><td>Submit a row without Phone Number</td><td>Row or file is rejected with field-level validation</td></tr>
+            <tr><td>Email</td><td><span class="status pass">Yes</span></td><td>Submit a row without Email</td><td>Row or file is rejected with field-level validation</td></tr>
+            <tr><td>Occupation</td><td><span class="status pass">Yes</span></td><td>Submit a row without Occupation</td><td>Row or file is rejected with field-level validation</td></tr>
+            <tr><td>All required fields</td><td><span class="status pass">Complete</span></td><td>Upload a valid template with all required values</td><td>File is accepted for processing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Decision table excerpt: duplicate prevention</h2>
+      <p>The source plan tested whether an existing merchant application could be submitted again at each lifecycle state. Status names are generalized, but the allow/block decisions follow the documented coverage.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Existing application state</th><th>Re-upload permitted</th><th>Expected data behaviour</th><th>Risk covered</th></tr></thead>
+          <tbody>
+            <tr><td>Waiting for approval</td><td><span class="priority high">No</span></td><td>Reject submission; do not insert duplicate data</td><td>Concurrent application duplication</td></tr>
+            <tr><td>Whitelisted</td><td><span class="priority high">No</span></td><td>Reject submission; preserve the existing record</td><td>Duplicate approved record</td></tr>
+            <tr><td>Rejected during approval</td><td><span class="status pass">Yes</span></td><td>Allow a new submission according to the retry flow</td><td>Valid resubmission</td></tr>
+            <tr><td>Rejected after partner review</td><td><span class="priority high">No</span></td><td>Reject submission; preserve the existing state</td><td>Invalid process bypass</td></tr>
+            <tr><td>Activated</td><td><span class="priority high">No</span></td><td>Reject submission; do not create a second active record</td><td>Active-record duplication</td></tr>
+            <tr><td>Expired</td><td><span class="status pass">Yes</span></td><td>Allow a new submission according to the renewal flow</td><td>Legitimate re-entry</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Pairwise test design excerpt: create or update</h2>
+      <p>The source plan covered an API-dependent create/update flow using record state, activation status, and a validity period. The endpoint, payload values, and referral-code algorithm are intentionally excluded. This compact matrix preserves pairwise interaction coverage across the three input factors.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Case</th><th>Record state</th><th>Active flag</th><th>Validity window</th><th>Expected behaviour</th></tr></thead>
+          <tbody>
+            <tr><td>PW-01</td><td>New</td><td>Active</td><td>Valid</td><td>Create a new active record successfully</td></tr>
+            <tr><td>PW-02</td><td>New</td><td>Inactive</td><td>Invalid</td><td>Reject the request with validation feedback</td></tr>
+            <tr><td>PW-03</td><td>Existing</td><td>Active</td><td>Invalid</td><td>Reject the update and preserve the existing state</td></tr>
+            <tr><td>PW-04</td><td>Existing</td><td>Inactive</td><td>Valid</td><td>Update the existing record without creating a duplicate</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Data-mapping migration excerpt: Outlet ID to Store ID</h2>
+      <p>This excerpt comes from a test plan for replacing an outlet-level identifier with a consolidated store identifier across transaction claims and lead-management flows. Internal schemas, endpoint names, ticket references, and status codes are excluded, while the cross-layer cases are retained.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Layer or module</th><th>Case-by-case coverage</th><th>Expected result</th><th>Test-design focus</th></tr></thead>
+          <tbody>
+            <tr><td>Claim Transaction API</td><td>Submit a claim using Store ID</td><td>The claim is created against the intended consolidated store</td><td>Positive functional</td></tr>
+            <tr><td>Claim Transaction API</td><td>Retrieve the claim reference after the mapping change</td><td>The returned claim remains associated with the correct Store ID</td><td>API consistency</td></tr>
+            <tr><td>Claim Transaction API</td><td>Submit or retrieve an expired transaction</td><td>The request follows the documented expiry validation and does not create an invalid claim</td><td>Negative and state validation</td></tr>
+            <tr><td>GraphQL transaction query</td><td>Query by order or application reference across relevant transaction states</td><td>The response resolves the same Store ID used by the transaction service</td><td>Integration and error guessing</td></tr>
+            <tr><td>Leads UI and API</td><td>Create an active lead after the identifier migration</td><td>UI submission and API data use Store ID consistently instead of the previous Outlet ID</td><td>End-to-end regression</td></tr>
+            <tr><td>Lead reference services</td><td>Retrieve product brands, promoter summaries, member leads, lead sources, and user status</td><td>Existing reference data remains correct and compatible with the new Store ID mapping</td><td>Shared-service regression</td></tr>
+            <tr><td>Optional product data</td><td>Submit a lead without optional product-brand information</td><td>The lead can still be processed without an incorrect required-field error</td><td>Optional-field validation</td></tr>
+            <tr><td>Phone-number lifecycle</td><td>Use a number that was previously acquired or belongs to an active or incomplete application</td><td>The UI and API return the appropriate validation response and prevent an invalid duplicate journey</td><td>State-based negative testing</td></tr>
+            <tr><td>Retry eligibility</td><td>Use a previously rejected number inside and outside the configured waiting period</td><td>The restricted case is blocked; the eligible case can proceed according to the retry rule</td><td>Boundary and decision testing</td></tr>
+            <tr><td>Phone input boundary</td><td>Submit a phone number that exceeds the accepted length</td><td>The input is rejected with a clear validation message and no lead is created</td><td>Negative boundary testing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Migration regression checklist</h3>
+      <ul>
+        <li>Verify that no supported flow continues to send the previous Outlet ID parameter.</li>
+        <li>Compare Store ID values across UI submission, REST responses, and GraphQL responses.</li>
+        <li>Confirm that multiple legacy outlet records resolve to the intended consolidated store.</li>
+        <li>Retest dependent lists, summaries, and user-status services after the mapping change.</li>
+        <li>Validate failure states as carefully as successful migration paths.</li>
+      </ul>
 
       <h2>Integration checks represented in the plans</h2>
       <ul>
