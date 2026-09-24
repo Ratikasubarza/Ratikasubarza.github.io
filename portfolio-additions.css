@@ -10,13 +10,16 @@
   display: flex;
   flex-direction: column;
   padding: .95rem;
-  background: var(--surface);
+  background: #fff;
   border: 1px solid var(--line);
-  border-radius: 12px 7px 12px 10px;
+  border-top: 5px solid var(--blue);
+  border-radius: 13px;
 }
 
-.metrics div:nth-child(2n) { background: var(--yellow-soft); }
-.metrics div:nth-child(3n) { background: var(--pink-soft); }
+.metrics div:nth-child(2) { border-top-color: var(--pink); }
+.metrics div:nth-child(3) { border-top-color: var(--orange); }
+.metrics div:nth-child(4) { border-top-color: var(--purple); }
+.metrics div:nth-child(5) { border-top-color: var(--lime); }
 
 .metrics strong {
   color: var(--blue);
@@ -24,6 +27,11 @@
   font-size: 1.8rem;
   line-height: 1;
 }
+
+.metrics div:nth-child(2) strong { color: var(--pink); }
+.metrics div:nth-child(3) strong { color: var(--orange); }
+.metrics div:nth-child(4) strong { color: var(--purple); }
+.metrics div:nth-child(5) strong { color: #77a914; }
 
 .metrics span {
   margin-top: .45rem;
@@ -50,17 +58,26 @@
 }
 
 .ai-grid > div {
+  position: relative;
   min-height: 210px;
   padding: 1.35rem;
+  overflow: hidden;
   border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 20px 9px 20px 14px;
+  border-radius: 17px;
+  background: #fff;
 }
 
-.ai-grid > div:nth-child(1) { background: var(--blue-soft); transform: rotate(-.35deg); }
-.ai-grid > div:nth-child(2) { background: var(--pink-soft); transform: translateY(7px) rotate(.3deg); }
-.ai-grid > div:nth-child(3) { background: var(--yellow-soft); transform: rotate(.25deg); }
-.ai-grid > div:nth-child(4) { background: var(--mint-soft); transform: translateY(7px) rotate(-.25deg); }
+.ai-grid > div::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 7px;
+  background: var(--blue);
+}
+
+.ai-grid > div:nth-child(2)::before { background: var(--pink); }
+.ai-grid > div:nth-child(3)::before { background: var(--orange); }
+.ai-grid > div:nth-child(4)::before { background: var(--lime); }
 
 .ai-grid span {
   color: var(--pink);
@@ -89,7 +106,7 @@
 
 .ai-tools span {
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: #fff;
   border-radius: 999px;
   padding: .37rem .62rem;
   font-size: .7rem;
@@ -114,30 +131,36 @@
 }
 
 .practice-card {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--line);
+  border-top: 6px solid var(--orange);
+  border-radius: 18px;
   padding: 1.45rem;
   display: flex;
   flex-direction: column;
-  background: var(--surface);
-  border-radius: 22px 10px 22px 16px;
-  box-shadow: 0 8px 0 transparent;
+  background: #fff;
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.practice-card:nth-child(1) {
-  background: color-mix(in srgb, var(--lavender-soft) 50%, var(--surface));
-  transform: rotate(-.35deg);
+.practice-card:nth-child(2) { border-top-color: var(--blue); }
+
+.practice-card::after {
+  content: "";
+  position: absolute;
+  right: -45px;
+  bottom: -45px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(251,154,43,.10);
 }
 
-.practice-card:nth-child(2) {
-  background: color-mix(in srgb, var(--mint-soft) 46%, var(--surface));
-  border-radius: 12px 24px 16px 24px;
-  transform: translateY(7px) rotate(.3deg);
-}
+.practice-card:nth-child(2)::after { background: rgba(76,105,223,.10); }
 
 .practice-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-small);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
 }
 
 .practice-top {
@@ -175,14 +198,12 @@
 
 .practice-card > a {
   color: var(--blue);
-  font-weight: 780;
+  font-weight: 800;
   font-size: .8rem;
   text-decoration: none;
 }
 
-.practice-card > a:hover {
-  color: var(--pink);
-}
+.practice-card > a:hover { color: var(--pink); }
 
 .practice-note {
   color: var(--muted);
@@ -192,31 +213,18 @@
 }
 
 @media (max-width: 900px) {
-  .metrics {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .metrics { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 760px) {
   .metrics,
-  .metric-note {
-    grid-column: 2;
-  }
+  .metric-note { grid-column: 2; }
 
   .ai-grid,
-  .practice-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ai-grid > div:nth-child(n),
-  .practice-card:nth-child(n) {
-    transform: none;
-  }
+  .practice-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 420px) {
   .metrics,
-  .metric-note {
-    grid-column: 1;
-  }
+  .metric-note { grid-column: 1; }
 }
