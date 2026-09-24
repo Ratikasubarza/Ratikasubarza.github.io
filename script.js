@@ -1,31 +1,13 @@
 const root = document.documentElement;
-const themeButton = document.querySelector('.theme');
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.nav-links');
 const filterStatus = document.querySelector('#filter-status');
-
-function updateThemeControl() {
-  const isDark = root.classList.contains('dark');
-  themeButton.textContent = isDark ? '☀' : '◐';
-  themeButton.setAttribute('aria-pressed', String(isDark));
-  themeButton.setAttribute('aria-label', isDark ? 'Use light theme' : 'Use dark theme');
-}
 
 function closeNavigation() {
   navigation.classList.remove('open');
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-label', 'Open navigation');
 }
-
-updateThemeControl();
-
-themeButton.addEventListener('click', () => {
-  root.classList.toggle('dark');
-  try {
-    localStorage.setItem('portfolio-theme', root.classList.contains('dark') ? 'dark' : 'light');
-  } catch {}
-  updateThemeControl();
-});
 
 menuButton.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
@@ -58,5 +40,34 @@ document.querySelectorAll('.filter').forEach(button => button.addEventListener('
 
   filterStatus.textContent = `Showing ${visibleCount} case ${visibleCount === 1 ? 'study' : 'studies'}`;
 }));
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!reducedMotion && 'IntersectionObserver' in window) {
+  root.classList.add('motion-ready');
+
+  const revealTargets = document.querySelectorAll(
+    '.section-head, .project, .artifact-card, .practice-card, .role, .steps > div, .ai-grid > div, .about-copy, .contact-actions'
+  );
+
+  revealTargets.forEach((element, index) => {
+    element.classList.add('reveal-item');
+    element.style.transitionDelay = `${Math.min((index % 4) * 70, 210)}ms`;
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.14,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealTargets.forEach(element => observer.observe(element));
+}
 
 document.querySelector('#year').textContent = new Date().getFullYear();

@@ -14,8 +14,9 @@
   left: 111px;
   top: 1.2rem;
   bottom: 1.2rem;
-  width: 2px;
-  background: linear-gradient(var(--blue-soft), var(--pink-soft), var(--yellow-soft), var(--mint-soft));
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(var(--blue), var(--pink), var(--orange), var(--lime));
 }
 
 .role {
@@ -25,17 +26,14 @@
   gap: 2rem;
   padding: 1.35rem 1.45rem;
   border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 20px 10px 20px 14px;
+  border-radius: 16px;
+  background: #fff;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.role:nth-child(2n) {
-  background: color-mix(in srgb, var(--blue-soft) 28%, var(--surface));
-  border-radius: 10px 22px 14px 22px;
-}
-
-.role:nth-child(3n) {
-  background: color-mix(in srgb, var(--pink-soft) 26%, var(--surface));
+.role:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-small);
 }
 
 .role::before {
@@ -45,7 +43,7 @@
   top: 1.68rem;
   width: 16px;
   height: 16px;
-  border: 3px solid var(--surface);
+  border: 4px solid #fff;
   border-radius: 50%;
   background: var(--blue);
   box-shadow: 0 0 0 1px var(--line);
@@ -53,8 +51,8 @@
 }
 
 .role:nth-child(2n)::before { background: var(--pink); }
-.role:nth-child(3n)::before { background: var(--yellow); }
-.role:nth-child(4n)::before { background: var(--mint); }
+.role:nth-child(3n)::before { background: var(--orange); }
+.role:nth-child(4n)::before { background: var(--lime); }
 
 .role time {
   color: var(--pink);
